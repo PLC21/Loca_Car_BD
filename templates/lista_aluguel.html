@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Alugueis</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      } 
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {background-color: #f2f2f2;}
+      </style>
+  </head>
+  <body>
+    <h1>Todos Alugues</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Aluguel</th>
+                <th>ID Carro</th>
+                <th>ID Cliente</th>
+                <th>Status Tipo</th>
+                <th>Data Início</th>
+                <th>Número de Dias</th>
+                <th>Data Retorno</th>
+                <th>Valor Total</th>
+                <th>Valor Pago</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tupla in dados %}
+            <tr>
+                <td>{{ tupla.ID_Aluguel }}</td>
+                <td>{{ tupla.ID_Carro }}</td>
+                <td>{{ tupla.ID_Cliente }}</td>
+                <td>{{ tupla.Status_Tipo }}</td>
+                <td>{{ tupla.Data_inicio }}</td>
+                <td>{{ tupla.Numero_dias }}</td>
+                <td>{{ tupla.Data_retorno }}</td>
+                <td>{{ tupla.Valor_Total }}</td>
+                <td>{{ tupla.Valor_pago }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <br>
+    <a href="/">Página Inicial</a>
+</body>
+</html>

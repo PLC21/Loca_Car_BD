@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Finalizar Aluguel Ativo - Parte 1</title>
+</head>
+<body>
+    <h1>Finalizar Aluguel Ativo - Parte 1</h1>
+
+   
+
+    <form method="POST" action="{{ url_for('finalizar_aluguel_ativo_parte1', ID_Aluguel=aluguel['ID_Aluguel']) }}">
+
+
+        <p>Data de Retorno Antiga: {{ aluguel['Data_retorno'] }}</p>
+        <label for="data_entrega">Data de Entrega:</label>
+        <input type="date" name="data_entrega" required><br>
+        
+        <input type="submit" value="Próximo">
+    </form>
+</body>
+</html>

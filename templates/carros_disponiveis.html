@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Carros Disponíveis</title>
+</head>
+<body>
+
+    <h1>Carros Disponíveis</h1>
+    <p>ID cliente = {{ ID_Cliente }}</p>
+    <p>Data de Início: {{ Data_inicio }}</p>
+    <p>Data de Retorno: {{ Data_retorno }}</p>
+    <p>numero de dias: {{ Numero_dias }}</p>
+
+
+    <form method="POST" action="{{ url_for('mostrar_carros_disponiveis', ID_Cliente=ID_Cliente, Data_inicio=Data_inicio, Numero_dias=Numero_dias, Data_retorno=Data_retorno, Valor_total=Valor_total) }}">
+        
+        <!-- Campos ocultos para enviar informações do aluguel -->
+        <input type="hidden" name="ID_Cliente"  id="ID_Cliente" value="{{ ID_Cliente }}">
+        <input type="hidden" name="Data_inicio"  id="Data_inicio" value="{{ Data_inicio }}">
+        <input type="hidden" name="Numero_dias"  id="Numero_dias" value="{{ Numero_dias }}">
+        <input type="hidden" name="Data_retorno"  id="Data_retorno" value="{{ Data_retorno }}">
+        <input type="hidden" name="Valor_total"  id="Valor_total" value="{{ Valor_total }}">
+       <!-- <input type="hidden" name="ID_Carro"  id="ID_Carro" value="{{ ID_Carro }}"> -->
+
+
+        <label for="ID_Carro">Selecione o Carro:</label>
+        <select name="ID_Carro" id="ID_Carro" required>
+            {% for carro in carros_disponiveis %}
+                <option value="{{ carro['ID_Carro'] }}">{{ carro['Modelo'] }} </option>
+            {% endfor %}
+        </select>
+
+        <br> 
+
+
+        <!-- campos ocultos para armazenar as informações -->
+        <input type="hidden" name="acao" value="finalizar_aluguel">
+        
+        <input type="submit" value="finalizar aluguel"> 
+
+    </form>
+    <br>
+    <a href="/">Página Inicial</a>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Alterar Taxas de Aluguel</title>
+</head>
+<body>
+    <h1>Alterar Taxas de Aluguel</h1>
+    
+    <form method="POST" action="/salvar_taxas/">
+        <table>
+            <tr>
+                <th>ID Tipo</th>
+                <th>Nome do Tipo</th>
+                <th>Valor Diário Antigo</th>
+                <th>Valor Semanal Antigo</th>
+                <th>Valor da Taxa de Atraso Antigo</th>
+                <th>Novo Valor Diário</th>
+                <th>Novo Valor Semanal</th>
+                <th>Novo Valor da Taxa de Atraso</th>
+            </tr>
+            
+            {% for tipo_carro in tipos_carros %}
+            <tr>
+                <td>{{ tipo_carro.ID_Tipo }}</td>
+                <td>{{ tipo_carro.Nome_tipo }}</td>
+                <td>{{ tipo_carro.Valor_dias }}</td>
+                <td>{{ tipo_carro.Valor_semanal }}</td>
+                <td>{{ tipo_carro.valor_taxa_atraso }}</td>
+                <td><input type="number" name="novo_valor_dias_{{ tipo_carro.ID_Tipo }}" step="0.01"></td>
+                <td><input type="number" name="novo_valor_semanal_{{ tipo_carro.ID_Tipo }}" step="0.01"></td>
+                <td><input type="number" name="nova_taxa_atraso_{{ tipo_carro.ID_Tipo }}" step="0.01"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <input type="submit" value="Salvar Alterações">
+    </form>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Realizar Aluguel</title>
+</head>
+<body>
+
+    <h1>Realizar Aluguel</h1>
+
+    <form method="POST" action="{{ url_for('Realizar_aluguel') }}">
+
+        <label for="ID_Cliente">Cliente:</label>
+        <select name="ID_Cliente" required>
+            {% for cliente in ID_Cliente %}
+                <option value="{{ cliente.ID_Cliente }}">{{ cliente.Nome }}</option>
+            {% endfor %}
+        </select>
+
+
+        <br>
+        <label for="data_inicio">Data de Início:</label>
+        <input type="date" name="Data_inicio" id="data_inicio" required>
+        <br>
+        <label for="Numero_dias">Número de Dias:</label>
+        <input type="number" name="Numero_dias" id="Numero_dias" required>
+        <br>
+
+        <!-- Campo oculto para armazenar a data de retorno calculada -->
+        <input type="hidden" name="Data_retorno" id="Data_retorno" value="">
+        
+        <!-- campos ocultos para armazenar as informações -->
+        <input type="submit" value="Mostrar veículos disponíveis">
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function calcularDataRetorno() {
+                var dataInicio = new Date(document.getElementById("data_inicio").value);
+                var numeroDias = parseInt(document.getElementById("Numero_dias").value);
+
+                if (!isNaN(numeroDias) && dataInicio instanceof Date && !isNaN(dataInicio)) {
+                    var dataRetorno = new Date(dataInicio);
+                    dataRetorno.setDate(dataRetorno.getDate() + numeroDias);
+                    document.getElementById("Data_retorno").value = dataRetorno.toISOString().substr(0, 10);
+                }
+            }
+
+            // Adicione um ouvinte de evento onchange aos elementos relevantes
+            document.getElementById("data_inicio").addEventListener("change", calcularDataRetorno);
+            document.getElementById("Numero_dias").addEventListener("change", calcularDataRetorno);
+            
+            // Chame a função uma vez para calcular a data de retorno inicial
+            calcularDataRetorno();
+        });
+    </script>
+</body>
+</html>

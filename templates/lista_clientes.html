@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Clientes Cadastrados</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      } 
+      th, td {
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {background-color: #f2f2f2;}
+      </style>
+  </head>
+  <body>
+     <table>
+      <tr>
+        <th>ID_Cliente</th>
+        <th>Nome</th>
+        <th>Telefone</th>
+      </tr>
+      {% for tupla in dados %}
+        <tr>
+          <td>{{tupla["ID_Cliente"]}}</td>
+          <td>{{tupla["Nome"]}}</td>
+          <td>{{tupla["Telefone"]}}</td>
+        </tr>
+      {% endfor %}
+     </table>
+     <br>
+     <a href="/">Página Inicial</a>
+  </body>
+</html>

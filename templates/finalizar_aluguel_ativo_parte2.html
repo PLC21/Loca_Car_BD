@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Finalizar Aluguel Ativo - Parte 2</title>
+</head>
+<body>
+    <h1>Finalizar Aluguel Ativo - Parte 2</h1>
+
+    <h2>teste condicional</h2>
+    <p>Data de Entrega: {{ data_entrega }}</p>
+    {% if aluguel['Valor_dias'] is defined %}
+        <p>Valor por Dia: R$ {{ aluguel['Valor_dias'] }}</p>
+    {% endif %}
+    {% if aluguel['Valor_semanal'] is defined %}
+        <p>Valor por Semana: R$ {{ aluguel['Valor_semanal'] }}</p>
+    {% endif %}
+
+
+    <p>ID Aluguel: {{ aluguel['ID_Aluguel'] }}</p>
+    <p>Nome do Cliente: {{ aluguel['Nome'] }} (ID Cliente: {{ aluguel['ID_Cliente'] }})</p>
+    <p>Modelo do Carro: {{ aluguel['Modelo'] }} (ID Carro: {{ aluguel['ID_Carro'] }})</p>
+    <p>Data de Início: {{ aluguel['Data_inicio'] }}</p>
+    <p>Data de Retorno Antiga: {{ aluguel['Data_retorno'] }}</p>
+    <p>Data de Entrega: {{ data_entrega }}</p> <!-- Certifique-se de que data_entrega seja exibida aqui -->
+    
+    <form method="POST" action="/alugueis/consultar/ativos/{{ aluguel['ID_Aluguel'] }}/finalizar/{{ data_entrega }}/final">
+        <label for="pagamento_final">Pagamento Final:</label>
+        <input type="number" name="pagamento_final" step="0.01" min="0" {% if valor_restante < 0 %}value="{{ -valor_restante }}"{% endif %} {% if valor_restante <= 0 %}disabled{% endif %} required><br>
+        
+        <input type="submit" value="Concluir">
+    </form>
+
+    <p>{% if valor_restante > 0 %}Pagamento Pendente: R$ {{ valor_restante }}{% elif valor_restante < 0 %}Aluguel Antecipado: R$ {{ -valor_restante }}{% endif %}</p>
+</body>
+</html>

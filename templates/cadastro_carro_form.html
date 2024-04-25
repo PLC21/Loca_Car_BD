@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Carro</title>
+</head>
+<body>
+    <h1>Cadastro de Carro</h1>
+    <form method="POST" action="/carros/cadastrar/">
+        <label for="modelo">Modelo:</label>
+        <input type="text" name="modelo" required>
+        <br>
+        <label for="marca">Marca:</label>
+        <input type="text" name="marca" required>
+        <br>
+        <label for="ano">Ano:</label>
+        <input type="text" name="ano" required>
+        <br>
+        <label for="tipo">Tipo de Carro:</label>
+        <select name="tipo" required>
+            {% for tipo_carro in tipos_carro %}
+                <option value="{{ tipo_carro.ID_Tipo }}">{{ tipo_carro.Nome_tipo }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Cadastrar">
+    </form>
+    <br>
+    <a href="/">Página Inicial</a>
+</body>
+</html>

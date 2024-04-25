@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado do Aluguel Ativo</title>
+</head>
+<body>
+    {% if num_dias != 0 %}
+    <p>Novo Valor Total: R$ {{ novo_valor_total }}</p>
+{% endif %}
+{% if valor_restante > 0 %}
+    <p>Multa de {{ num_dias }} dias no valor: R$ {{ diferenca }}</p>
+{% elif valor_restante < 0 %}
+    <p>Reembolso realizado no valor de: R$ {{ -diferenca }}</p>
+{% endif %}
+
+    <h1>Resultado do Aluguel Ativo</h1>
+    <p>ID Aluguel: {{ aluguel.ID_Aluguel }}</p>
+    <p>Nome do Cliente: {{ aluguel.Nome }} (ID Cliente: {{ aluguel.ID_Cliente }})</p>
+    <p>Modelo do Carro: {{ aluguel.Modelo }} (ID Carro: {{ aluguel.ID_Carro }})</p>
+    <p>Data de Início: {{ aluguel.Data_inicio }}</p>
+    <p>Data de Retorno: {{ aluguel.Data_retorno }}</p>
+    
+    {% if num_dias != 0 %}
+        <p>Novo Valor Total: R$ {{ novo_valor_total }}</p>
+    {% endif %}
+    
+    {% if valor_restante > 0 %}
+        <p>Multa de {{ num_dias }} dias no valor: R$ {{ diferenca }}</p>
+    {% elif valor_restante < 0 %}
+        <p>Reembolso realizado no valor de: R$ {{ -diferenca }}</p>
+    {% endif %}
+    
+    <form method="POST" action="/alugueis/consultar/ativos/{{ aluguel.ID_Aluguel }}/finalizar/final">
+        <input type="submit" value="Concluir">
+    </form>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Finalizar Aluguel</title>
+</head>
+<body>
+    <h1>Finalizar Aluguel</h1>
+    <h2>Resumo do Aluguel</h2>
+    <p>Cliente: {{ cliente_nome }} (ID: {{ ID_Cliente }})</p>
+    <p>Carro: {{ carro_modelo }} (ID: {{ ID_Carro }})</p>
+
+    <p>Carro: {{ carro_info.Modelo }} (ID: {{ ID_Carro }}) Ano: {{ carro_info.Ano }} Tipo: {{ carro_info.Nome_tipo }}Valor Semanal: R$ {{ carro_info.Valor_semanal }} Valor Diário: R$ {{ carro_info.Valor_dias }}</p>
+    
+    <p>Data de Início: {{ Data_inicio }}</p>
+    <p>Número de Dias: {{ Numero_dias }}</p>
+    <p>Data de Retorno: {{ Data_retorno }}</p>
+    <p>Valor Total: R$ {{ Valor_total }}</p>
+    
+    <form method="POST" action="{{ url_for('finalizar_aluguel', ID_Cliente=ID_Cliente, ID_Carro=ID_Carro, Data_inicio=Data_inicio, Numero_dias=Numero_dias, Data_retorno=Data_retorno, Valor_total=Valor_total, Valor_pago=Valor_pago) }}">
+       
+
+
+
+        <label for="Valor_pago">Valor a pagar:</label>
+        <input type="number" name="Valor_pago" step="0.01" min="0" max="{{ Valor_total }}" required>
+        <input type="hidden" name="ID_Cliente" value="{{ ID_Cliente }}">
+        <input type="hidden" name="ID_Carro" value="{{ ID_Carro }}">
+        <input type="hidden" name="Data_inicio" value="{{ Data_inicio }}">
+        <input type="hidden" name="Numero_dias" value="{{ Numero_dias }}">
+        <input type="hidden" name="Data_retorno" value="{{ Data_retorno }}">
+        <input type="hidden" name="Valor_total" value="{{ Valor_total }}">
+        <input type="submit" value="Finalizar Aluguel">
+    </form>
+    <br>
+    <a href="/">Página Inicial</a>
+</body>
+</html>
